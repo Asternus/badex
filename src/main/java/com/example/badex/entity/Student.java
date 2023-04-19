@@ -1,4 +1,4 @@
-package com.example.badex;
+package com.example.badex.entity;
 
 import lombok.Getter;
 import lombok.Setter;

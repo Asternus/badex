@@ -1,4 +1,4 @@
-package com.example.badex;
+package com.example.badex.service;
 
 import com.example.badex.entity.Student;
 import com.example.badex.repository.StudentRepo;
@@ -11,7 +11,7 @@ import java.util.List;
 public class StudentService {
 
     @Autowired
-    StudentRepo studentRepo;
+    private StudentRepo studentRepo;
 
     public void addUser() {
         final Student student = new Student();
@@ -26,10 +26,6 @@ public class StudentService {
         studentRepo.saveAndFlush(student);
     }
 
-    public List<Student> getAll() {
-        addUser();
-        return studentRepo.findAll();
-    }
 
     public List<Student> findAll() {
         return studentRepo.findAll();

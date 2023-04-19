@@ -1,7 +1,8 @@
-package com.example.badex;
+package com.example.badex.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -17,7 +18,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = {"com.example.badex"})
-@PropertySource("classpath:application.properties")
+@ComponentScan("com.example.badex")
 public class JpaConfig {
 
     @Bean

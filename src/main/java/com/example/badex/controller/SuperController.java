@@ -1,5 +1,6 @@
-package com.example.badex;
+package com.example.badex.controller;
 
+import com.example.badex.service.StudentService;
 import com.example.badex.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,8 @@ public class SuperController {
     @GetMapping(path = "", produces = "application/json")
     @ResponseBody
     public ResponseEntity<List<Student>> getCategories() {
-        List<Student> categories = studentService.findAll();
-        return new ResponseEntity<>(categories, HttpStatus.OK);
+        List<Student> studentServiceAll = studentService.findAll();
+        return new ResponseEntity<>(studentServiceAll, HttpStatus.OK);
     }
 
     @PostMapping(path = "", produces = "application/json")

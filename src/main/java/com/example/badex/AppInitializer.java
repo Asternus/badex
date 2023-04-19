@@ -1,21 +1,30 @@
-import config.SpringConfig;
+package com.example.badex;
+
+import com.example.badex.config.SpringConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
 
 public class AppInitializer implements WebApplicationInitializer {
 
     @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(SpringConfig.class);
-        context.setServletContext(servletContext);
+    public void onStartup(ServletContext servletContext) {
+        AnnotationConfigWebApplicationContext webApplicationContext =
+                new AnnotationConfigWebApplicationContext();
 
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(context));
+        webApplicationContext.register(SpringConfig.class);
+
+        // Manage the lifecycle of the root application context
+        servletContext.addListener(new ContextLoaderListener(webApplicationContext));
+
+        // Register and map the dispatcher servlet
+        ServletRegistration.Dynamic dispatcher = servletContext
+                .addServlet("dispatcher", new DispatcherServlet(webApplicationContext));
+
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
     }
