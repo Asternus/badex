@@ -35,7 +35,6 @@
 </table>
 
 
-
 <h2>Add Student</h2>
 <form method="post" action="/badex_war_exploded/add">
     <label for="name">Name:</label>

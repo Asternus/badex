@@ -42,6 +42,7 @@ public class StudentController {
 
     @GetMapping("/student/{id}")
     public String getStudent(Model model, @PathVariable int id) {
+        //bad code
         final Student student = studentService
                 .findAll()
                 .stream().filter(s-> s.getId() == id)

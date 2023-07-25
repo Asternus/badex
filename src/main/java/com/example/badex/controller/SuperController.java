@@ -22,6 +22,7 @@ public class SuperController {
 
     @Autowired
     public SuperController(final StudentService studentService) {
+
         this.studentService = studentService;
     }
 
